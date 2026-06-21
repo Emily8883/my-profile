@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wen Jia Yee - AI & Full Stack Software Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #2c2c2c;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            min-height: 100vh;
+        }
+
+        /* Left Sidebar */
+        .sidebar {
+            width: 320px;
+            background: linear-gradient(135deg, #f5e6e8 0%, #f0dfe2 100%);
+            padding: 50px 35px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .profile-image-placeholder {
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(135deg, #d4a9b4 0%, #c99aa8 100%);
+            border-radius: 12px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            text-align: center;
+            font-weight: 500;
+            overflow: hidden;
+        }
+
+        .name {
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 8px;
+            color: #2c2c2c;
+            letter-spacing: -0.5px;
+        }
+
+        .profession {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #a88a94;
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid rgba(168, 138, 148, 0.3);
+        }
+
+        .sidebar-section {
+            margin-bottom: 26px;
+        }
+
+        .sidebar-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .sidebar-section-title {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #a88a94;
+            margin-bottom: 14px;
+        }
+
+        .contact-item {
+            margin-bottom: 16px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .contact-label {
+            font-weight: 600;
+            color: #2c2c2c;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .contact-value {
+            color: #555;
+            word-break: break-word;
+        }
+
+        .contact-value a {
+            color: #8a7a85;
+            text-decoration: none;
+            border-bottom: 1px solid #d4a9b4;
+            transition: color 0.3s ease;
+        }
+
+        .contact-value a:hover {
+            color: #2c2c2c;
+        }
+
+        .skills-list {
+            list-style: none;
+        }
+
+        .skills-list li {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 10px;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .skills-list li:before {
+            content: "▪";
+            position: absolute;
+            left: 0;
+            color: #c99aa8;
+        }
+
+        .hobbies-list {
+            list-style: none;
+        }
+
+        .hobbies-list li {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 9px;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .hobbies-list li:before {
+            content: "▪";
+            position: absolute;
+            left: 0;
+            color: #c99aa8;
+        }
+
+        /* Main Content */
+        .content {
+            flex: 1;
+            padding: 50px 50px;
+        }
+
+        .section {
+            margin-bottom: 28px;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #2c2c2c;
+            margin-bottom: 22px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .about-text {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #555;
+            text-align: justify;
+        }
+
+        .job-entry {
+            margin-bottom: 22px;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .job-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #2c2c2c;
+        }
+
+        .job-subtitle {
+            font-size: 13px;
+            color: #a88a94;
+            font-style: italic;
+            margin-bottom: 2px;
+        }
+
+        .job-date {
+            font-size: 12px;
+            color: #999;
+            font-weight: 500;
+        }
+
+        .job-description {
+            margin-top: 10px;
+        }
+
+        .job-description ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .job-description li {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 8px;
+            padding-left: 18px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .job-description li:before {
+            content: "▪";
+            position: absolute;
+            left: 0;
+            color: #d4a9b4;
+        }
+
+        .education-entry {
+            margin-bottom: 18px;
+        }
+
+        .education-degree {
+            font-size: 14px;
+            font-weight: 700;
+            color: #2c2c2c;
+            margin-bottom: 4px;
+        }
+
+        .education-institution {
+            font-size: 13px;
+            color: #a88a94;
+            margin-bottom: 6px;
+            font-style: italic;
+        }
+
+        .education-date {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .education-description {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .personal-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #a88a94;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 13px;
+            color: #555;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            .container {
+                max-width: 100%;
+                box-shadow: none;
+                height: auto;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                padding: 40px 30px;
+                border-bottom: 1px solid #e0e0e0;
+            }
+
+            .content {
+                padding: 40px 30px;
+            }
+
+            .personal-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <!-- Profile Image -->
+            <div class="profile-image-placeholder">
+                <img src="profile.jpg" alt="Profile Photo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+            </div>
+
+            <!-- Name and Profession -->
+            <div class="name">Wen<br>Jia<br>Yee</div>
+            <div class="profession">AI & Full Stack Software Engineer</div>
+
+            <!-- Contact Section -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Contact</div>
+                <div class="contact-item">
+                    <span class="contact-label">Telegram</span>
+                    <span class="contact-value">@ajhoge5</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">Teams</span>
+                    <span class="contact-value"><a href="https://teams.live.com/l/invite/FAAO0oi0aYQmdsvAw?v=g1">Join Team</a></span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">Location</span>
+                    <span class="contact-value">Manchester, UK</span>
+                </div>
+            </div>
+
+            <!-- Skills Section -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Key Skills</div>
+                <ul class="skills-list">
+                    <li>AI & Machine Learning</li>
+                    <li>LLM Integration</li>
+                    <li>Full Stack Development</li>
+                    <li>React & Next.js</li>
+                    <li>JavaScript & Python</li>
+                    <li>Node.js & REST APIs</li>
+                    <li>Database Design</li>
+                    <li>Cloud Deployment</li>
+                    <li>UI/UX Design</li>
+                    <li>Software Architecture</li>
+                    <li>Git & Version Control</li>
+                    <li>Problem Solving</li>
+                </ul>
+            </div>
+
+            <!-- Personal Information Section -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Personal</div>
+                <div class="contact-item">
+                    <span class="contact-label">DOB</span>
+                    <span class="contact-value">July 7, 2000</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">From</span>
+                    <span class="contact-value">Hangzhou, China</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <!-- About Section -->
+            <div class="section">
+                <div class="section-title">About Me</div>
+                <p class="about-text">
+                    I am a Junior Software Engineer with several years of freelance development experience, specializing in Artificial Intelligence solutions, full-stack web applications, and modern website design. I excel at designing and developing scalable software systems, integrating AI technologies into practical applications, building responsive web platforms, and creating user-friendly digital experiences. I thrive on solving complex technical problems, exploring emerging technologies, and delivering reliable software solutions that create real value for users and businesses.
+                </p>
+            </div>
+
+            <!-- Work Experience Section -->
+            <div class="section">
+                <div class="section-title">Work Experience</div>
+
+                <div class="job-entry">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Freelance Software Engineer</div>
+                            <div class="job-subtitle">AI Development & Full Stack Applications</div>
+                        </div>
+                        <div class="job-date">2022 – Present</div>
+                    </div>
+                    <div class="job-description">
+                        <ul>
+                            <li>Developed AI-powered applications and intelligent software solutions</li>
+                            <li>Built full-stack web applications using modern frontend and backend technologies</li>
+                            <li>Integrated AI models, APIs, automation systems, and databases</li>
+                            <li>Designed responsive websites focused on performance and usability</li>
+                            <li>Worked with clients remotely to analyze requirements and deliver complete software products</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="job-entry">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Full Stack Developer</div>
+                            <div class="job-subtitle">Freelance Web Development Projects</div>
+                        </div>
+                        <div class="job-date">2020 – 2022</div>
+                    </div>
+                    <div class="job-description">
+                        <ul>
+                            <li>Developed customized websites and web platforms</li>
+                            <li>Created modern frontend interfaces and backend systems</li>
+                            <li>Improved website performance and user experience</li>
+                            <li>Managed projects from planning and development to deployment</li>
+                            <li>Provided maintenance and technical improvements</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education Section -->
+            <div class="section">
+                <div class="section-title">Education</div>
+
+                <div class="education-entry">
+                    <div class="education-degree">Bachelor of Science in Computer Science</div>
+                    <div class="education-institution">Zhejiang University of Technology</div>
+                    <div class="education-date">2018 – 2022</div>
+                    <div class="education-description">
+                        Focused on software engineering, artificial intelligence fundamentals, algorithms, database systems, web technologies, and computer programming.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interests Section -->
+            <div class="section">
+                <div class="section-title">Interests</div>
+                <ul class="hobbies-list">
+                    <li>Tech & Innovation</li>
+                    <li>Reading</li>
+                    <li>Gardening</li>
+                    <li>Badminton</li>
+                    <li>Home Organization</li>
+                    <li>Learning New Frameworks</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
