@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wen Jia Yee - Let's Connect & Chat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #1a1a1a;
+            padding: 20px;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Halftone Background Pattern */
+        .halftone-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            pointer-events: none;
+            background-image: 
+                radial-gradient(circle, #ff4444 1px, transparent 1px);
+            background-size: 15px 15px;
+            z-index: 0;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section - Speech Bubble */
+        .hero {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .hero-bubble {
+            background: #ff3333;
+            border-radius: 40px;
+            padding: 60px 50px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 8px 30px rgba(255, 51, 51, 0.3);
+            transform: rotate(-2deg);
+            overflow: hidden;
+        }
+
+        .hero-bubble::before {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            right: 50px;
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 0 solid transparent;
+            border-top: 25px solid #ff3333;
+        }
+
+        .bubble-hearts {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0.8;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .heart-1 { top: 20px; left: 30px; animation-delay: 0s; }
+        .heart-2 { top: 60px; right: 40px; animation-delay: 0.5s; }
+        .heart-3 { bottom: 30px; left: 50px; animation-delay: 1s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        .hero-greeting {
+            font-size: 18px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.9);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .hero-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 72px;
+            font-weight: 900;
+            color: white;
+            line-height: 1;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .hero-subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: white;
+            color: #ff3333;
+            padding: 16px 40px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 800;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 3px solid white;
+            cursor: pointer;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 51, 51, 0.4);
+        }
+
+        /* Profile Sticker Section */
+        .profile-sticker {
+            background: white;
+            border-radius: 30px;
+            padding: 40px 35px;
+            margin-bottom: 40px;
+            transform: rotate(1deg);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border: 3px solid #1a1a1a;
+            text-align: center;
+            position: relative;
+        }
+
+        .profile-sticker::after {
+            content: "";
+            position: absolute;
+            top: -12px;
+            right: 40px;
+            width: 30px;
+            height: 30px;
+            background: #ff3333;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 20px;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            border: 4px solid #ff3333;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .profile-title {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #ff3333;
+            margin-bottom: 20px;
+        }
+
+        /* Contact Sticker Tags */
+        .contact-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .tag {
+            background: #f5f5f5;
+            border: 2px solid #1a1a1a;
+            padding: 10px 16px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transform: rotate(-1deg);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tag:hover {
+            transform: rotate(3deg) scale(1.08);
+            background: #ff3333;
+            color: white;
+        }
+
+        .tag a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Chat Bubble Sections */
+        .chat-bubble {
+            background: white;
+            border: 3px solid #1a1a1a;
+            border-radius: 25px;
+            padding: 30px 35px;
+            margin-bottom: 30px;
+            transform: rotate(-1deg);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+            position: relative;
+        }
+
+        .chat-bubble:nth-child(even) {
+            transform: rotate(1deg);
+        }
+
+        .chat-bubble:nth-child(3n) {
+            background: #fff9f0;
+        }
+
+        .chat-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            letter-spacing: -1px;
+        }
+
+        .chat-title::before {
+            content: "💬 ";
+            margin-right: 8px;
+        }
+
+        .chat-content {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .chat-content ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+
+        .chat-content li {
+            padding-left: 24px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .chat-content li:before {
+            content: "★";
+            position: absolute;
+            left: 0;
+            color: #ff3333;
+            font-size: 16px;
+        }
+
+        /* Pill Tags Grid */
+        .pill-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .pill {
+            background: #ffe0e0;
+            border: 2px solid #ff3333;
+            color: #1a1a1a;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transform: rotate(-2deg);
+            transition: all 0.3s ease;
+        }
+
+        .pill:hover {
+            background: #ff3333;
+            color: white;
+            transform: rotate(2deg) scale(1.1);
+        }
+
+        /* Journey Timeline - Comic Style */
+        .journey-sticker {
+            background: white;
+            border: 3px solid #1a1a1a;
+            border-radius: 25px;
+            padding: 30px 35px;
+            margin-bottom: 30px;
+            transform: rotate(1deg);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .journey-item {
+            padding: 20px 0;
+            padding-left: 40px;
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .journey-item::before {
+            content: "";
+            position: absolute;
+            left: 8px;
+            top: 12px;
+            width: 18px;
+            height: 18px;
+            background: #ff3333;
+            border-radius: 50%;
+            border: 3px solid #1a1a1a;
+        }
+
+        .journey-item::after {
+            content: "";
+            position: absolute;
+            left: 15px;
+            top: 45px;
+            width: 3px;
+            height: 35px;
+            background: #ff3333;
+        }
+
+        .journey-item:last-child::after {
+            display: none;
+        }
+
+        .journey-period {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #ff3333;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .journey-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .journey-description {
+            font-size: 13px;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        /* Interests Stickers */
+        .sticker-cluster {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .sticker {
+            background: white;
+            border: 2px solid #1a1a1a;
+            padding: 12px 18px;
+            border-radius: 18px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            transform: rotate(-3deg);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .sticker:nth-child(2n) {
+            transform: rotate(3deg);
+        }
+
+        .sticker:hover {
+            transform: rotate(0deg) scale(1.12) translateY(-5px);
+            background: #ff3333;
+            color: white;
+        }
+
+        /* Decorative Elements */
+        .accent-line {
+            width: 40px;
+            height: 4px;
+            background: #ff3333;
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0.7;
+            animation: float-rotate 4s ease-in-out infinite;
+        }
+
+        @keyframes float-rotate {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(10deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 48px;
+            }
+
+            .hero-bubble {
+                padding: 40px 30px;
+            }
+
+            .chat-bubble {
+                padding: 25px 20px;
+            }
+
+            .profile-sticker {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="halftone-bg"></div>
+    
+    <div class="container content-wrapper">
+        <!-- Hero Section - Main Speech Bubble -->
+        <div class="hero">
+            <div class="hero-bubble">
+                <div class="bubble-hearts heart-1">❤️</div>
+                <div class="bubble-hearts heart-2">💬</div>
+                <div class="bubble-hearts heart-3">❤️</div>
+                
+                <div class="hero-greeting">Hey there!</div>
+                <h1 class="hero-title">LET'S<br>CONNECT</h1>
+                <div class="hero-subtitle">& Chat About Tech</div>
+                <a href="https://teams.live.com/l/invite/FAAO0oi0aYQmdsvAw?v=g1" class="hero-cta">💬 Message Me</a>
+            </div>
+        </div>
+
+        <!-- Profile Sticker -->
+        <div class="profile-sticker">
+            <div class="profile-img">
+                <img src="profile.jpg" alt="Wen Jia Yee">
+            </div>
+            <div class="profile-name">Wen Jia Yee</div>
+            <div class="profile-title">AI & Full Stack Engineer</div>
+            <div class="contact-tags">
+                <div class="tag">📍 Manchester, UK</div>
+                <div class="tag">💌 @ajhoge5 on Telegram</div>
+                <div class="tag">🌐 Always Online</div>
+            </div>
+        </div>
+
+        <!-- About Chat Bubble -->
+        <div class="chat-bubble">
+            <div class="chat-title">About Me</div>
+            <div class="chat-content">
+                I'm a software engineer with several years of freelance development experience. I specialize in AI-powered applications, full-stack web development, and creating solutions that actually solve real problems. I'm always excited to meet other developers and tech enthusiasts!
+            </div>
+        </div>
+
+        <!-- Technical Skills Chat Bubble -->
+        <div class="chat-bubble">
+            <div class="chat-title">What I Know</div>
+            <div class="pill-grid">
+                <div class="pill">AI/ML Integration</div>
+                <div class="pill">React</div>
+                <div class="pill">Next.js</div>
+                <div class="pill">Python</div>
+                <div class="pill">Node.js</div>
+                <div class="pill">APIs</div>
+                <div class="pill">Databases</div>
+                <div class="pill">UI/UX Design</div>
+                <div class="pill">Cloud Deploy</div>
+                <div class="pill">Git</div>
+                <div class="pill">LLM Integration</div>
+                <div class="pill">JavaScript</div>
+            </div>
+        </div>
+
+        <!-- Journey Timeline -->
+        <div class="journey-sticker">
+            <div class="chat-title">My Journey</div>
+            <div class="journey-item">
+                <div class="journey-period">2020 – 2022</div>
+                <div class="journey-title">Freelance Web Developer</div>
+                <div class="journey-description">Built customized websites and web platforms. Focused on frontend development, modern interfaces, and improving website performance.</div>
+            </div>
+            <div class="journey-item">
+                <div class="journey-period">2022 – Present</div>
+                <div class="journey-title">Freelance Software Engineer</div>
+                <div class="journey-description">Evolved to full-stack development with a focus on AI-powered applications. Building complex projects with AI integration, backend systems, and end-to-end solutions.</div>
+            </div>
+        </div>
+
+        <!-- Interests Bubble -->
+        <div class="chat-bubble">
+            <div class="chat-title">Things I Love</div>
+            <div class="sticker-cluster">
+                <div class="sticker">📚 Reading</div>
+                <div class="sticker">🌸 Gardening</div>
+                <div class="sticker">🏸 Badminton</div>
+                <div class="sticker">🏠 Organization</div>
+                <div class="sticker">💻 New Tech</div>
+            </div>
+        </div>
+
+        <!-- Final CTA Bubble -->
+        <div class="chat-bubble" style="text-align: center; background: #ffe0e0;">
+            <div class="chat-title" style="text-align: center;">Don't Be Shy!</div>
+            <div class="chat-content">
+                <p>I genuinely love connecting with developers and tech enthusiasts. Whether you want to exchange ideas, discuss projects, or just chat about cool tech stuff—reach out! 🚀</p>
+                <a href="https://teams.live.com/l/invite/FAAO0oi0aYQmdsvAw?v=g1" class="hero-cta" style="margin-top: 20px;">💬 LET'S CHAT!</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
